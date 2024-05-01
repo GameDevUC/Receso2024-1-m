@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Receso 2024-1-m-Mario"
-run/main_scene="res://escenario.tscn"
+run/main_scene="res://escenarios/escenario.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/image="res://spritesheets/2024-04-30 20_51_09-escenario.tscn - Receso 2024-1-m-Mario - Godot Engine.png"
 boot_splash/use_filter=false
