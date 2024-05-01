@@ -51,7 +51,10 @@ func _physics_process(delta):
 			if direction == 0:
 				animated_sprite.animation = idle
 			else:
-				animated_sprite.animation = walk
+				if speed_level > 1:
+					animated_sprite.animation = run
+				else:
+					animated_sprite.animation = walk
 			
 		if direction:
 			if speed_level == 0: speed_level = 1
