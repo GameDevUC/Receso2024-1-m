@@ -8,11 +8,13 @@ size = Vector2(12, 28)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(2, -3)
+collision_mask = 7
 script = ExtResource("1_h1etl")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("2_f5qqq")]
 position = Vector2(6, 19)
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(6, 21)
