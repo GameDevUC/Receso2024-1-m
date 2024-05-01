@@ -14,8 +14,7 @@ var dead = false
 
 @onready var animated_sprite = $AnimatedSprite2D
 
-@onready var ray_cast_right = $RayCastRight
-@onready var ray_cast_left = $RayCastLeft
+@onready var ray_cast_direction = $RayCastDirection
 @onready var ray_cast_up = $RayCastUp
 
 
@@ -25,12 +24,15 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	animated_sprite.animation = walk
 	animated_sprite.play()
+	if ray_cast_direction.target_position.x * direction < 0:
+		ray_cast_direction.target_position.x *= -1
 	
 func _process(delta):
 	if ray_cast_up.is_colliding() and not dead:
 		direction = 0
 		animated_sprite.animation = dead_animation
 		dead = true
+		$CollisionShape2D.disabled = true # DELETE THIS when throw added
 		$LifeTime.start()
 	
 func _physics_process(delta):
@@ -39,12 +41,14 @@ func _physics_process(delta):
 		if not is_on_floor():
 			velocity.y += gravity * delta
 
-		if ray_cast_left.is_colliding(): 
-			direction = 1
-			animated_sprite.flip_h = true
-		if ray_cast_right.is_colliding():
-			direction = -1
-			animated_sprite.flip_h = false
+		if ray_cast_direction.is_colliding():
+			direction *= -1
+			ray_cast_direction.target_position.x *= -1
+			
+			if direction > 0:
+				animated_sprite.flip_h = true
+			else:
+				animated_sprite.flip_h = false
 			
 		velocity.x = direction * SPEED
 
