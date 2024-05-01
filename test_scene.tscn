@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cafbuhw8ubh1j"]
+[gd_scene load_steps=5 format=3 uid="uid://ssoyqs3ovoij"]
 
 [ext_resource type="Texture2D" uid="uid://wmj21oisbbjf" path="res://spritesheets/d8pd8k4-cc0828a6-9d39-4a5c-b66f-4263ec1a75e9.png" id="1_f8nwc"]
 [ext_resource type="PackedScene" uid="uid://chblbheoo8kng" path="res://characters/Mario/player.tscn" id="2_rsiqn"]

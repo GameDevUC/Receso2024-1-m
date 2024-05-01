@@ -1,23 +1,27 @@
 [gd_scene load_steps=5 format=3 uid="uid://bjhmlg6xluty3"]
 
-[ext_resource type="Script" path="res://escenarios/escenario.gd" id="1_hm86s"]
-[ext_resource type="PackedScene" uid="uid://bg0meqfjf3326" path="res://characters/mario_animated_sprite.tscn" id="2_1ys8r"]
+[ext_resource type="PackedScene" uid="uid://chblbheoo8kng" path="res://characters/Mario/player.tscn" id="2_cp7wo"]
+[ext_resource type="Texture2D" uid="uid://cbtsd3rgvdfkt" path="res://spritesheets/SMW_fondo.png" id="3_3xi4c"]
 [ext_resource type="AudioStream" uid="uid://dxdd1iyt6ugxk" path="res://musica/FatMarioWalkin.mp3" id="3_akib3"]
 [ext_resource type="PackedScene" uid="uid://b8v54dqyb1oaa" path="res://escenarios/tile_map_escenarios.tscn" id="4_7vvbg"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_hm86s")
-
-[node name="TileMap" parent="." instance=ExtResource("4_7vvbg")]
-
-[node name="MarioAnimatedSprite" parent="." instance=ExtResource("2_1ys8r")]
-position = Vector2(575, 328.5)
-scale = Vector2(72, 20.0312)
-frame_progress = 0.0741194
-speed_scale = 0.4
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(575, 328.5)
 scale = Vector2(72, 20.0312)
 stream = ExtResource("3_akib3")
 autoplay = true
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(671, 229)
+scale = Vector2(2.86607, 2.86607)
+texture = ExtResource("3_3xi4c")
+
+[node name="Player" parent="." instance=ExtResource("2_cp7wo")]
+position = Vector2(116, 91)
+scale = Vector2(40, 10)
+
+[node name="TileMap" parent="." instance=ExtResource("4_7vvbg")]
+scale = Vector2(3, 3)
+layer_0/tile_data = PackedInt32Array(720896, 131072, 6, 786432, 131072, 7, 851968, 131072, 7, 720897, 131072, 6, 786433, 131072, 7, 851969, 131072, 7, 720898, 131072, 6, 786434, 131072, 7, 851970, 131072, 7, 720899, 131072, 6, 786435, 131072, 7, 851971, 131072, 7, 720900, 131072, 6, 786436, 131072, 7, 851972, 131072, 7, 720901, 131072, 6, 786437, 131072, 7, 851973, 131072, 7, 720902, 131072, 6, 786438, 131072, 7, 851974, 131072, 7, 720903, 131072, 6, 786439, 131072, 7, 851975, 131072, 7, 720904, 131072, 6, 786440, 131072, 7, 851976, 131072, 7, 720905, 131072, 6, 786441, 131072, 7, 851977, 131072, 7, 720906, 131072, 6, 786442, 131072, 7, 851978, 131072, 7, 720907, 131072, 6, 786443, 131072, 7, 851979, 131072, 7, 720908, 131072, 6, 786444, 131072, 7, 851980, 131072, 7, 720909, 131072, 6, 786445, 131072, 7, 851981, 131072, 7, 720910, 131072, 6, 786446, 131072, 7, 851982, 131072, 7, 720911, 131072, 6, 786447, 131072, 7, 851983, 131072, 7, 720912, 131072, 6, 786448, 131072, 7, 851984, 131072, 7, 720913, 131072, 6, 786449, 131072, 7, 851985, 131072, 7, 720914, 131072, 6, 786450, 131072, 7, 851986, 131072, 7, 720915, 131072, 6, 786451, 131072, 7, 851987, 131072, 7, 720916, 131072, 6, 786452, 131072, 7, 851988, 131072, 7, 720917, 131072, 6, 786453, 131072, 7, 851989, 131072, 7, 720918, 131072, 6, 786454, 131072, 7, 851990, 131072, 7, 720919, 131072, 6, 786455, 131072, 7, 851991, 131072, 7, 786431, 196608, 8, 65535, 196608, 7, 131071, 196608, 7, 196607, 196608, 7, 262143, 196608, 7, 327679, 196608, 7, 393215, 196608, 7, 458751, 196608, 7, 524287, 196608, 7, 589823, 196608, 7, 655359, 196608, 7, 720895, 196608, 7, 851967, 131072, 7, 917503, 131072, 7, 655384, 65536, 7, 589848, 65536, 7, 524312, 65536, 7, 458776, 65536, 7, 393240, 65536, 7, 327704, 65536, 7, 262168, 65536, 7, 196632, 65536, 7, 131096, 65536, 7, 65560, 65536, 7, 24, 65536, 7, 720920, 65536, 8, 786456, 131072, 7, 851992, 131072, 7)
