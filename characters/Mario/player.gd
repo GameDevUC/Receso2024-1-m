@@ -69,21 +69,21 @@ func _physics_process(delta):
 				else:
 					animated_sprite.animation = walk
 			
+			
 		if direction:
-
 			if is_on_floor(): time_running += delta
 			if time_running > 0:
 				if current_speed == 0:
 					current_speed = BASE_SPEED
 				elif time_running > TIEMPO1 and BASE_SPEED <= current_speed and current_speed < TRANSITION_SPEED:
-					current_speed += 0.05*BASE_SPEED
+					current_speed += 0.1*BASE_SPEED
 				elif time_running > TIEMPO2 and TRANSITION_SPEED <= current_speed and current_speed < MAX_SPEED:
-					current_speed += 0.1*BASE_SPEED 
+					current_speed += 0.05*BASE_SPEED 
 			if direction < 0: animated_sprite.flip_h = true
 			else: animated_sprite.flip_h = false
 			velocity.x = direction * current_speed
 		else:
-			velocity.x = move_toward(velocity.x, 0, current_speed)
+			velocity.x = move_toward(velocity.x, 0, BASE_SPEED*0.1)
 			time_running = float(0)
 			
 	else:
