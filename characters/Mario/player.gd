@@ -67,6 +67,9 @@ func _physics_process(delta):
 			speed_level = 0
 			
 	else:
+		if not Input.is_action_pressed("jump") and not is_on_floor() and jumping:
+			velocity.y = 0
+			jumping = false
 		animated_sprite.animation = crouch
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
