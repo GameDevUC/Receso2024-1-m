@@ -3,9 +3,8 @@
 [ext_resource type="Script" path="res://characters/Mario/player.gd" id="1_h1etl"]
 [ext_resource type="PackedScene" uid="uid://bg0meqfjf3326" path="res://characters/Mario/mario_animated_sprite.tscn" id="2_f5qqq"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4pnli"]
-radius = 6.0
-height = 28.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3am8"]
+size = Vector2(12, 28)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(2, -3)
@@ -17,4 +16,4 @@ position = Vector2(6, 19)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(6, 21)
-shape = SubResource("CapsuleShape2D_4pnli")
+shape = SubResource("RectangleShape2D_a3am8")
