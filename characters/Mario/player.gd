@@ -12,6 +12,8 @@ const BASE_SPEED = 300.0
 const TRANSITION_SPEED = (1.8*BASE_SPEED)
 const MAX_SPEED = (3*BASE_SPEED)
 const JUMP_VELOCITY = -500.0
+const TIEMPO1 = 0.3
+const TIEMPO2 = 1.7
 var current_speed = float(0)
 var coyote_time = 0.1
 
@@ -73,9 +75,9 @@ func _physics_process(delta):
 			if time_running > 0:
 				if current_speed == 0:
 					current_speed = BASE_SPEED
-				elif time_running > 0.3 and BASE_SPEED <= current_speed and current_speed < TRANSITION_SPEED:
+				elif time_running > TIEMPO1 and BASE_SPEED <= current_speed and current_speed < TRANSITION_SPEED:
 					current_speed += 0.05*BASE_SPEED
-				elif time_running > 2 and TRANSITION_SPEED <= current_speed and current_speed < MAX_SPEED:
+				elif time_running > TIEMPO2 and TRANSITION_SPEED <= current_speed and current_speed < MAX_SPEED:
 					current_speed += 0.1*BASE_SPEED 
 			if direction < 0: animated_sprite.flip_h = true
 			else: animated_sprite.flip_h = false
