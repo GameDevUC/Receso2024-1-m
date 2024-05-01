@@ -31,6 +31,7 @@ func _physics_process(delta):
 		animated_sprite.animation = dead_animation
 		dead = true
 		$CollisionShape2D.disabled = true
+		dead_signal.emit()
 	
 	if not dead:
 		# Add the gravity.
@@ -45,3 +46,12 @@ func _physics_process(delta):
 		velocity.x = SPEED * direction
 
 		move_and_slide()
+
+
+func _on_dead_signal():
+	$Timer.start()
+	
+
+
+func _on_timer_timeout():
+	queue_free()
