@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=3 uid="uid://8idd8ocewvpi"]
+
+[ext_resource type="Texture2D" uid="uid://c6hli21hgxwqx" path="res://spritesheets/custom_mario_sprite_sheet_ver_1__by_hartflip0218_dcpb2k.png" id="1_1gtki"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0kmu"]
+atlas = ExtResource("1_1gtki")
+region = Rect2(19, 12, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbrpg"]
+atlas = ExtResource("1_1gtki")
+region = Rect2(42, 12, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wns2m"]
+atlas = ExtResource("1_1gtki")
+region = Rect2(83, 12, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnit0"]
+atlas = ExtResource("1_1gtki")
+region = Rect2(100, 12, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j36vu"]
+atlas = ExtResource("1_1gtki")
+region = Rect2(137, 12, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p02wq"]
+atlas = ExtResource("1_1gtki")
+region = Rect2(63, 12, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bk2nc"]
+atlas = ExtResource("1_1gtki")
+region = Rect2(83, 12, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ny21b"]
+atlas = ExtResource("1_1gtki")
+region = Rect2(119, 12, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k7mg"]
+atlas = ExtResource("1_1gtki")
+region = Rect2(137, 12, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yecnm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0kmu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbrpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wns2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnit0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j36vu")
+}],
+"loop": true,
+"name": &"run",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p02wq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bk2nc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ny21b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7k7mg")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="MarioAnimatedSprite" type="AnimatedSprite2D"]
+position = Vector2(394, 228)
+sprite_frames = SubResource("SpriteFrames_yecnm")
+animation = &"walk"
