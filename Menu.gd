@@ -1,7 +1,7 @@
 extends Node
 
 # Path to main game
-const path = "res://escenario.tscn"
+const path = "res://test_scene.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
