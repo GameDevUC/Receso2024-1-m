@@ -10,6 +10,7 @@ const crouch = "crouch"
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
+var coyote_time = 0.1
 
 @onready var animated_sprite = $AnimatedSprite2D
 var direction = 0
@@ -21,6 +22,11 @@ var jumping = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func should_jump(delta):
+	if coyote_time > 0:
+		return true
+	return false
+
 
 func _ready():
 	animated_sprite.animation = idle
@@ -29,13 +35,15 @@ func _ready():
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
+		coyote_time -= delta
 		if velocity.y >= 0:
 			animated_sprite.animation = fall
 		velocity.y += gravity * delta
+	else: coyote_time = 0.1
 
 	if not Input.is_action_pressed("crouch"):			
 		# Handle jump.
-		if Input.is_action_just_pressed("jump") and is_on_floor():
+		if Input.is_action_just_pressed("jump") and (is_on_floor() or should_jump(delta)):
 			animated_sprite.animation = jump
 			velocity.y = JUMP_VELOCITY
 			jumping = true
