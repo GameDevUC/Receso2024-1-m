@@ -73,9 +73,9 @@ func _physics_process(delta):
 			if time_running > 0:
 				if current_speed == 0:
 					current_speed = BASE_SPEED
-				elif time_running > 0.3 and BASE_SPEED <= current_speed < TRANSITION_SPEED:
+				elif time_running > 0.3 and BASE_SPEED <= current_speed and current_speed < TRANSITION_SPEED:
 					current_speed += 0.05*BASE_SPEED
-				elif time_running > 2 and TRANSITION_SPEED <= current_speed < MAX_SPEED:
+				elif time_running > 2 and TRANSITION_SPEED <= current_speed and current_speed < MAX_SPEED:
 					current_speed += 0.1*BASE_SPEED 
 			if direction < 0: animated_sprite.flip_h = true
 			else: animated_sprite.flip_h = false
