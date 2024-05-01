@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal dead_signal
+
 # Animations names
 const walk = "walk"
 const dead_animation = "dead"
