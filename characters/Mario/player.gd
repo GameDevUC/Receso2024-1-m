@@ -92,6 +92,14 @@ func _physics_process(delta):
 			jumping = false
 		velocity.y += gravity * delta
 		animated_sprite.animation = crouch
-		velocity.x = move_toward(velocity.x, 0, BASE_SPEED*0.1)
+		
+		direction = Input.get_axis("move_left", "move_right")
+		if direction:
+			if is_on_floor(): time_running += delta
+			if time_running > 0: current_speed = BASE_SPEED
+			if direction < 0: animated_sprite.flip_h = true
+			else: animated_sprite.flip_h = false
+			velocity.x = direction * current_speed
+		else: velocity.x = move_toward(velocity.x, 0, BASE_SPEED*0.1)
 
 	move_and_slide()
