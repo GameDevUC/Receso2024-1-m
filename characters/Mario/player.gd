@@ -22,10 +22,9 @@ var jumping = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-func should_jump(delta):
-	if coyote_time > 0:
-		return true
-	return false
+func should_jump():
+	return (coyote_time > 0)
+
 
 
 func _ready():
@@ -43,7 +42,7 @@ func _physics_process(delta):
 
 	if not Input.is_action_pressed("crouch"):			
 		# Handle jump.
-		if Input.is_action_just_pressed("jump") and (is_on_floor() or should_jump(delta)):
+		if Input.is_action_pressed("jump") and (is_on_floor() or should_jump()):
 			animated_sprite.animation = jump
 			velocity.y = JUMP_VELOCITY
 			jumping = true
