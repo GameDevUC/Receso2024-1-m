@@ -8,8 +8,13 @@ const jump = "jump"
 const fall = "fall"
 const crouch = "crouch"
 
-const SPEED = 300.0
+const BASE_SPEED = 300.0
+const TRANSITION_SPEED = (1.8*BASE_SPEED)
+const MAX_SPEED = (3*BASE_SPEED)
 const JUMP_VELOCITY = -500.0
+const TIEMPO1 = 0.3
+const TIEMPO2 = 1.7
+var current_speed = float(0)
 var coyote_time = 0.1
 
 @onready var animated_sprite = $AnimatedSprite2D
@@ -57,24 +62,29 @@ func _physics_process(delta):
 		if is_on_floor() and not velocity.y < 0:
 			if direction == 0:
 				animated_sprite.animation = idle
+				current_speed = 0
 			else:
 				if speed_level > 1:
 					animated_sprite.animation = run
 				else:
 					animated_sprite.animation = walk
 			
+			
 		if direction:
-			if speed_level == 0: speed_level = 1
 			if is_on_floor(): time_running += delta
-			if time_running > 1 and speed_level < 3:
-				time_running = 0
-				speed_level += 1
+			if time_running > 0:
+				if current_speed == 0:
+					current_speed = BASE_SPEED
+				elif time_running > TIEMPO1 and BASE_SPEED <= current_speed and current_speed < TRANSITION_SPEED:
+					current_speed += 0.1*BASE_SPEED
+				elif time_running > TIEMPO2 and TRANSITION_SPEED <= current_speed and current_speed < MAX_SPEED:
+					current_speed += 0.05*BASE_SPEED 
 			if direction < 0: animated_sprite.flip_h = true
 			else: animated_sprite.flip_h = false
-			velocity.x = direction * SPEED * speed_level
+			velocity.x = direction * current_speed
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			speed_level = 0
+			velocity.x = move_toward(velocity.x, 0, BASE_SPEED*0.1)
+			time_running = float(0)
 			
 	else:
 		if not Input.is_action_pressed("jump") and not is_on_floor() and jumping:
@@ -82,6 +92,14 @@ func _physics_process(delta):
 			jumping = false
 		velocity.y += gravity * delta
 		animated_sprite.animation = crouch
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+		direction = Input.get_axis("move_left", "move_right")
+		if direction:
+			if is_on_floor(): time_running += delta
+			if time_running > 0: current_speed = BASE_SPEED
+			if direction < 0: animated_sprite.flip_h = true
+			else: animated_sprite.flip_h = false
+			velocity.x = direction * current_speed
+		else: velocity.x = move_toward(velocity.x, 0, BASE_SPEED*0.1)
 
 	move_and_slide()
