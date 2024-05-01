@@ -37,8 +37,8 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bjbbs"]
-size = Vector2(18, 13)
+[sub_resource type="CircleShape2D" id="CircleShape2D_j73j5"]
+radius = 7.0
 
 [node name="Goomba" type="CharacterBody2D"]
 script = ExtResource("1_cefi0")
@@ -49,8 +49,8 @@ sprite_frames = SubResource("SpriteFrames_w4fpb")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(17, 27.5)
-shape = SubResource("RectangleShape2D_bjbbs")
+position = Vector2(17, 27)
+shape = SubResource("CircleShape2D_j73j5")
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(17, 26)
@@ -62,8 +62,8 @@ target_position = Vector2(-10, 0)
 
 [node name="RayCastUp" type="RayCast2D" parent="."]
 position = Vector2(17, 26)
-scale = Vector2(6, 3)
-target_position = Vector2(0, -4.33333)
+scale = Vector2(3, 1)
+target_position = Vector2(0, -11)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

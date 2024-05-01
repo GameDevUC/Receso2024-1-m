@@ -13,6 +13,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("2_f5qqq")]
 position = Vector2(6, 19)
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(6, 21)

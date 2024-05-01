@@ -18,6 +18,7 @@ var dead = false
 @onready var ray_cast_left = $RayCastLeft
 @onready var ray_cast_up = $RayCastUp
 
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -30,29 +31,25 @@ func _process(delta):
 		direction = 0
 		animated_sprite.animation = dead_animation
 		dead = true
-		$CollisionShape2D.disabled = true
-		dead_signal.emit()
-
-func _physics_process(delta):		
+		$LifeTime.start()
+	
+func _physics_process(delta):
 	if not dead:
 		# Add the gravity.
 		if not is_on_floor():
 			velocity.y += gravity * delta
-		
+
 		if ray_cast_left.is_colliding(): 
 			direction = 1
+			animated_sprite.flip_h = true
 		if ray_cast_right.is_colliding():
 			direction = -1
+			animated_sprite.flip_h = false
 			
-		velocity.x = SPEED * direction
+		velocity.x = direction * SPEED
 
 		move_and_slide()
 
 
-func _on_dead_signal():
-	$Timer.start()
-	
-
-
-func _on_timer_timeout():
+func _on_life_time_timeout():
 	queue_free()
