@@ -1,7 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqm885sbav3vf"]
+[gd_scene load_steps=10 format=3 uid="uid://cqm885sbav3vf"]
 
-[ext_resource type="Script" path="res://Koopa.gd" id="1_45xqa"]
+[ext_resource type="Script" path="res://characters/Koopa/Koopa.gd" id="1_45xqa"]
 [ext_resource type="Texture2D" uid="uid://be1ry55jkijoq" path="res://spritesheets/MarioAssets/Characters/Enemies.png" id="2_ws6gc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ja2p"]
+atlas = ExtResource("2_ws6gc")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nv3g4"]
+atlas = ExtResource("2_ws6gc")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fccms"]
 atlas = ExtResource("2_ws6gc")
@@ -17,6 +25,17 @@ region = Rect2(126, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p8r6d"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ja2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nv3g4")
+}],
+"loop": true,
+"name": &"atack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fccms")
@@ -42,12 +61,13 @@ size = Vector2(16, 20)
 
 [node name="Koopa" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 7
+collision_mask = 519
 script = ExtResource("1_45xqa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p8r6d")
-animation = &"walk"
+animation = &"atack"
+frame_progress = 0.237738
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
@@ -56,19 +76,27 @@ shape = SubResource("RectangleShape2D_5sswk")
 [node name="RayCastDirection" type="RayCast2D" parent="."]
 position = Vector2(0, 2)
 target_position = Vector2(11, 0)
-collision_mask = 7
+collision_mask = 519
 
 [node name="RayCastAtack" type="RayCast2D" parent="."]
 position = Vector2(0, 2)
 target_position = Vector2(50, 0)
+collision_mask = 512
 
 [node name="RayCastUp" type="RayCast2D" parent="."]
 position = Vector2(0, 2)
 scale = Vector2(3, 1.4)
 target_position = Vector2(0, -10)
+collision_mask = 512
 
 [node name="LifeTime" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 
+[node name="AtackTime" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="timeout" from="LifeTime" to="." method="_on_life_time_timeout"]
+[connection signal="timeout" from="AtackTime" to="." method="_on_atack_time_timeout"]

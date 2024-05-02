@@ -6269,7 +6269,7 @@ texture = ExtResource("1_f8nwc")
 
 [sub_resource type="TileSet" id="TileSet_vlduf"]
 physics_layer_0/collision_layer = 1
-physics_layer_0/collision_mask = 15
+physics_layer_0/collision_mask = 527
 sources/0 = SubResource("TileSetAtlasSource_7o72k")
 
 [node name="TestScene" type="Node2D"]
@@ -6296,6 +6296,10 @@ scale = Vector2(2.5, 2.5)
 
 [node name="Koopa" parent="." instance=ExtResource("4_rwk0f")]
 position = Vector2(1378, -49)
+scale = Vector2(2.5, 2.5)
+
+[node name="Koopa3" parent="." instance=ExtResource("4_rwk0f")]
+position = Vector2(425, -49)
 scale = Vector2(2.5, 2.5)
 
 [node name="Koopa2" parent="." instance=ExtResource("4_rwk0f")]
