@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqm885sbav3vf"]
+[gd_scene load_steps=11 format=3 uid="uid://cqm885sbav3vf"]
 
 [ext_resource type="Script" path="res://characters/Koopa/Koopa.gd" id="1_45xqa"]
 [ext_resource type="Texture2D" uid="uid://be1ry55jkijoq" path="res://spritesheets/MarioAssets/Characters/Enemies.png" id="2_ws6gc"]
@@ -59,6 +59,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5sswk"]
 size = Vector2(16, 20)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_hf17m"]
+radius = 9.0
+
 [node name="Koopa" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 519
@@ -90,13 +93,28 @@ target_position = Vector2(0, -10)
 collision_mask = 512
 
 [node name="LifeTime" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
 one_shot = true
 
 [node name="AtackTime" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 
+[node name="ActiveDeadArea" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="DeadArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 513
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea"]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_hf17m")
+disabled = true
+
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="timeout" from="LifeTime" to="." method="_on_life_time_timeout"]
 [connection signal="timeout" from="AtackTime" to="." method="_on_atack_time_timeout"]
+[connection signal="timeout" from="ActiveDeadArea" to="." method="_on_active_dead_area_timeout"]
+[connection signal="body_entered" from="DeadArea" to="." method="_on_dead_area_body_entered"]
