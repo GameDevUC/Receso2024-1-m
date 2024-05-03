@@ -100,13 +100,14 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
-[node name="ActiveDeadArea" type="Timer" parent="."]
+[node name="ActivateDeadArea" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 
 [node name="DeadArea" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 513
+collision_mask = 512
+collision_priority = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea"]
 position = Vector2(0, 7)
@@ -116,5 +117,5 @@ disabled = true
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="timeout" from="LifeTime" to="." method="_on_life_time_timeout"]
 [connection signal="timeout" from="AtackTime" to="." method="_on_atack_time_timeout"]
-[connection signal="timeout" from="ActiveDeadArea" to="." method="_on_active_dead_area_timeout"]
+[connection signal="timeout" from="ActivateDeadArea" to="." method="_on_activate_dead_area_timeout"]
 [connection signal="body_entered" from="DeadArea" to="." method="_on_dead_area_body_entered"]

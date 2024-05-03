@@ -47,8 +47,8 @@ func _process(delta):
 		direction = 0
 		animated_sprite.animation = dead_animation
 		dead = true
-		collision_shape.disabled = true
-		$ActiveDeadArea.start()
+		collision_shape.set_deferred("disabled", true)
+		$ActivateDeadArea.start()
 		life_time.start()
 
 	
@@ -88,6 +88,7 @@ func _physics_process(delta):
 		if ray_cast_direction.is_colliding():
 			if ray_cast_direction.get_collider().name == "Player":
 				hit_player_signal.emit()
+				print("player")
 			direction *= -1
 			ray_cast_direction.target_position.x *= -1
 		velocity.x = direction * SLIDE_SPEED
@@ -109,14 +110,14 @@ func _on_atack_time_timeout():
 
 func _on_dead_area_body_entered(body):
 	if body.name == "Player" and not dead_collision_shape.disabled:
-		collision_shape.disabled = false
-		dead_collision_shape.disabled = true
-		direction = randi_range(1, 2)
-		if direction == 2:
-			direction = -1
+		collision_shape.set_deferred("disabled", false)
+		dead_collision_shape.set_deferred("disabled", true)
+		if ray_cast_direction.get_collider() != null:
+			if ray_cast_direction.get_collider().name == "Player":
+				direction = -(ray_cast_direction.target_position.x / abs(ray_cast_direction.target_position.x))
+		else:
+			direction = ray_cast_direction.target_position.x / abs(ray_cast_direction.target_position.x)
 		life_time.start()
-		
 
-
-func _on_active_dead_area_timeout():
-	dead_collision_shape.disabled = false
+func _on_activate_dead_area_timeout():
+	dead_collision_shape.set_deferred("disabled", false)
