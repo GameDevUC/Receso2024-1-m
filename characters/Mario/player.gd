@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal dead_signal
+
 # Animation names
 const idle = "idle"
 const walk = "walk"
@@ -17,6 +19,10 @@ const TIEMPO2 = 1.7
 var current_speed = float(0)
 var coyote_time = 0.1
 
+const BASE_LIFE = 3
+
+var life = BASE_LIFE
+
 @onready var animated_sprite = $AnimatedSprite2D
 var direction = 0
 var speed_level = 0
@@ -29,6 +35,11 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func should_jump():
 	return (coyote_time > 0)
+	
+func reduce_life(value = 1):
+	life -= value
+	if life <= 0:
+		dead_signal.emit()
 
 
 
