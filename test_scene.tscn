@@ -6297,6 +6297,10 @@ scale = Vector2(3.15031, 2.66893)
 position = Vector2(767, -92)
 scale = Vector2(2.5, 2.5)
 
+[node name="Goomba3" parent="Enemies" instance=ExtResource("3_1qh4b")]
+position = Vector2(121, -88)
+scale = Vector2(2.5, 2.5)
+
 [node name="Goomba2" parent="Enemies" instance=ExtResource("3_1qh4b")]
 position = Vector2(1025, -89)
 scale = Vector2(2.5, 2.5)

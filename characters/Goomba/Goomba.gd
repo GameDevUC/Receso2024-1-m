@@ -21,6 +21,13 @@ var dead = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func hitted():
+	direction = 0
+	animated_sprite.animation = dead_animation
+	dead = true
+	$CollisionShape2D.disabled = true
+	dead_signal.emit()
+
 func _ready():
 	animated_sprite.animation = walk
 	animated_sprite.play()
@@ -29,11 +36,7 @@ func _ready():
 	
 func _process(delta):
 	if ray_cast_up.is_colliding() and not dead:
-		direction = 0
-		animated_sprite.animation = dead_animation
-		dead = true
-		$CollisionShape2D.disabled = true
-		dead_signal.emit()
+		hitted()
 
 func _physics_process(delta):		
 	if not dead:
