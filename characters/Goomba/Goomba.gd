@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal dead_signal
+signal hit_player_signal
 
 # Animations names
 const walk = "walk"
@@ -41,6 +42,8 @@ func _physics_process(delta):
 			velocity.y += gravity * delta
 		
 		if ray_cast_direction.is_colliding():
+			if ray_cast_direction.get_collider().name == "Player":
+				hit_player_signal.emit()
 			direction = -direction
 			ray_cast_direction.target_position.x *= -1
 			
