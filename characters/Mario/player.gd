@@ -9,6 +9,7 @@ const run = "run"
 const jump = "jump"
 const fall = "fall"
 const crouch = "crouch"
+const dead_animation = "dead"
 
 const BASE_SPEED = 300.0
 const TRANSITION_SPEED = (1.8*BASE_SPEED)
@@ -120,3 +121,6 @@ func _physics_process(delta):
 
 func _on_dead_signal():
 	dead = true
+	$CollisionShape2D.disabled = true
+	animated_sprite.animation = dead_animation
+	animated_sprite.stop()
