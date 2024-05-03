@@ -1,10 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://bg0meqfjf3326"]
+[gd_scene load_steps=16 format=3 uid="uid://bg0meqfjf3326"]
 
 [ext_resource type="Texture2D" uid="uid://c6hli21hgxwqx" path="res://spritesheets/custom_mario_sprite_sheet_ver_1__by_hartflip0218_dcpb2k.png" id="1_n0xxx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_phoub"]
 atlas = ExtResource("1_n0xxx")
 region = Rect2(360, 10, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yg4s4"]
+atlas = ExtResource("1_n0xxx")
+region = Rect2(207, 51, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0rupg"]
 atlas = ExtResource("1_n0xxx")
@@ -58,6 +62,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yg4s4")
+}],
+"loop": true,
+"name": &"dead",
 "speed": 5.0
 }, {
 "frames": [{
