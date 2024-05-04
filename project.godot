@@ -54,7 +54,6 @@ crouch={
 2d_physics/layer_1="Tiles"
 2d_physics/layer_2="Goomba"
 2d_physics/layer_3="Koopa"
-2d_physics/layer_4="Koopa atacking"
 2d_physics/layer_10="Player"
 
 [rendering]

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal dead_signal
 signal hit_player_signal
+signal give_points_signal
 
 # Animations names
 const walk = "walk"
@@ -13,6 +14,8 @@ const JUMP_VELOCITY = -400.0
 var direction = 1
 var dead = false
 
+@export var POINTS = 1
+
 @onready var animated_sprite = $AnimatedSprite2D
 
 @onready var ray_cast_direction = $RayCastDirection
@@ -21,11 +24,15 @@ var dead = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func get_points():
+	return POINTS
+
 func hitted():
 	direction = 0
 	animated_sprite.animation = dead_animation
 	dead = true
 	$CollisionShape2D.disabled = true
+	give_points_signal.emit()
 	dead_signal.emit()
 
 func _ready():
