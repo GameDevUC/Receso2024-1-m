@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal dead_signal
 signal hit_player_signal
-signal give_points_signal
+signal give_points_signal(points)
 
 # Animations names
 const walk = "walk"
@@ -45,7 +45,7 @@ func hitted():
 	collision_shape.set_deferred("disabled", true)
 	ray_cast_atacking.enabled = false
 	ray_cast_direction.enabled = false
-	give_points_signal.emit()
+	give_points_signal.emit(POINTS)
 	$ActivateDeadArea.start()
 	life_time.start()
 

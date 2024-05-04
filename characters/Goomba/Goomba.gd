@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal dead_signal
 signal hit_player_signal
-signal give_points_signal
+signal give_points_signal(points)
 
 # Animations names
 const walk = "walk"
@@ -32,7 +32,7 @@ func hitted():
 	animated_sprite.animation = dead_animation
 	dead = true
 	$CollisionShape2D.disabled = true
-	give_points_signal.emit()
+	give_points_signal.emit(POINTS)
 	dead_signal.emit()
 
 func _ready():
