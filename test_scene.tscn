@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://lawkw7vx6xor"]
+[gd_scene load_steps=9 format=3 uid="uid://lawkw7vx6xor"]
 
 [ext_resource type="Texture2D" uid="uid://wmj21oisbbjf" path="res://spritesheets/d8pd8k4-cc0828a6-9d39-4a5c-b66f-4263ec1a75e9.png" id="1_f8nwc"]
 [ext_resource type="Script" path="res://Manager.gd" id="1_ig5pq"]
 [ext_resource type="PackedScene" uid="uid://chblbheoo8kng" path="res://characters/Mario/player.tscn" id="2_rsiqn"]
 [ext_resource type="PackedScene" uid="uid://be3tr8ue175xe" path="res://characters/Goomba/goomba.tscn" id="3_1qh4b"]
+[ext_resource type="Texture2D" uid="uid://c0iutiugoqtrr" path="res://spritesheets/heart.png" id="4_qkm1t"]
 [ext_resource type="PackedScene" uid="uid://cqm885sbav3vf" path="res://characters/Koopa/koopa.tscn" id="4_rwk0f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7o72k"]
@@ -6290,6 +6291,71 @@ position = Vector2(670, -181)
 scale = Vector2(3.15031, 2.66893)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="PlayerInterface" type="Control" parent="Player/Camera2D"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -183.0
+offset_top = -122.0
+offset_right = 183.0
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreText" type="Label" parent="Player/Camera2D/PlayerInterface"]
+layout_mode = 1
+offset_left = 3.96999
+offset_top = 4.72454
+offset_right = 46.97
+offset_bottom = 27.7245
+theme_override_font_sizes/font_size = 16
+text = "Score:"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="Player/Camera2D/PlayerInterface/ScoreText"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 11.0
+offset_top = -10.5
+offset_right = 121.0
+offset_bottom = 12.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "0"
+
+[node name="LifeRepresentation" type="TextureRect" parent="Player/Camera2D/PlayerInterface"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -69.9953
+offset_top = 3.60049
+offset_right = -49.9953
+offset_bottom = 23.6005
+grow_horizontal = 0
+texture = ExtResource("4_qkm1t")
+
+[node name="Life" type="Label" parent="Player/Camera2D/PlayerInterface/LifeRepresentation"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1.58517
+offset_top = -11.124
+offset_right = 45.5852
+offset_bottom = 11.876
+grow_horizontal = 0
+grow_vertical = 2
+text = "0"
 
 [node name="Enemies" type="Node" parent="."]
 
