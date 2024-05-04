@@ -1,15 +1,17 @@
 extends Node
 
-var points = 0
+var score = 0
 
 @onready var player = %Player
 @onready var enemies = $"../Enemies"
+@onready var player_interface = %PlayerInterface
 
-func add_points(points_value):
-	points += points_value
-	print("Points: " + str(points))
+func add_points(points):
+	score += points
+	player_interface.get_node("ScoreText").get_node("Score").set_text(str(score))
 
 func _ready():
+	player_interface.get_node("ScoreText").get_node("Score").set_text(str(score))
 	for enemy in enemies.get_children():
 		enemy.hit_player_signal.connect(_on_player_hitted)
 		enemy.give_points_signal.connect(add_points)
