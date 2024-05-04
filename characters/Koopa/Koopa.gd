@@ -112,7 +112,6 @@ func _physics_process(delta):
 			if ray_cast_direction.is_colliding():
 				if ray_cast_direction.get_collider().name == "Player" and not setting_direction:
 					hit_player_signal.emit()
-					print("player")
 				direction *= -1
 				ray_cast_direction.target_position.x *= -1
 				ray_cast_atacking.target_position.x *= -1
